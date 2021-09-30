@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Lunch</label>
+    <div>
+        <select name="lunch" id="lunch7" onclick="fill(this)" multiple>
+            <option value="pizza">pizza</option>
+            <option value="burger">burger</option>
+            <option value="dosa">dosa</option>
+            <option value="razma">razma</option>
+            <option value="paratha">paratha</option>
+        </select>
+    </div>
+    <label>Dinner</label>
+    <div>
+        <select name="dinner" id="dinner7" onclick="fill(this)" multiple>
+        <option value="daal">daal</option>
+        <option value="paneer">paneer</option>
+        <option value="daalmakhni">daalmakhni</option>
+        <option value="roti">roti</option>
+        <option value="rice">rice</option>
+    </select>
+    </div>
+    <label>Gift Dish</label>
+    <div>
+        <select name="choice" id="choice7" onclick="fill(this)" multiple>
+        <option value="colddrink">colddrink</option>
+        <option value="lassi">lassi</option>
+        </select>
+    </div>
+    <button id="btn" click="laod()">total</button>
+    <button id="clr" click="reset()">clear</button>
+    <div id="res"></div>
+    <div id="total"></div><br>
+  </body>
+    <script>
+        var data=[];
+        function fill(add)
+        {
+            data.push(document.getElementById(add.id).value);
+            console.log(data);
+        }
+        function laod()
+        {
+            var total=0;
+            for(let index=0; index<data.length;index++)
+            {
+                const element= data[index];
+                document.getElementById("res").innerHTML+=element+"</br>"
+            }
+            for(let i=0; i<data.length;i++)
+            {
+                if(data[i]=="razma" || data[i]== "dalmakhni")
+                total+=90;
+                else if(data[i]=="poha" || data[i]== "rice")
+                total+=100;
+                else if(data[i]=="paratha" || data[i]== "roti")
+                total+=80;
+                else if(data[i]=="daal" || data[i]== "paneer")
+                total+=120;
+                else if(data[i]=="dosa" || data[i]== "burger")
+                total+=50;
+                else if(data[i]=="colddrink"|| data[i]== "lassi")
+                total+=60;
+            }
+            document.getElementById("total").innerHTML="Total Cost: "+total
+        }
+        function reset()
+        {
+            document.getElementById("res").innerHTML=""
+            document.getElementById("total").innerHTML=""
+        }
+        document.getElementById("btn").addEventListener("click",laod);
+        document.getElementById("clr").addEventListener("click",reset);
+    </script>
+
+</html>
